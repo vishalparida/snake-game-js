@@ -81,3 +81,68 @@
     margin: auto;
     /* border-radius: 50%; */
 }
+
+ /* CSS for added functionalities */
+
+ .controls {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    gap: 10px;
+}
+#pauseBtn {
+    width: 50px;
+    height: 50px;
+    background-image: url('https://t4.ftcdn.net/jpg/03/57/35/57/360_F_357355728_7ezXudFDFO42K6cvQbksnCKLtnUbFCuC.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%; 
+    background-position: center;
+}
+
+#pauseBtn.paused { 
+    width: 50px;
+    height: 50px;
+    background-image: url('https://static.thenounproject.com/png/1343174-200.png');
+    background-repeat: no-repeat;
+    background-size: 100%; 
+    background-position: center;
+}
+
+#muteBtn {
+    width: 50px;
+    height: 50px;
+    background-image: url('https://cdn-icons-png.flaticon.com/512/6398/6398985.png');
+    background-repeat: no-repeat;
+    background-size: 100%; 
+    background-position: center;
+}
+
+#muteBtn.muted {
+    width: 50px;
+    height: 50px;
+    background-image: url('https://static.thenounproject.com/png/3528341-200.png');
+    background-repeat: no-repeat;
+    background-size: 100%; 
+    background-position: center;
+}
+
+/* Style for full-screen and exit full-screen button */
+#fullScreenBtn {
+    width: 50px;
+    height: 50px;
+    background-image: url('https://static.thenounproject.com/png/1827140-200.png');
+    background-repeat: no-repeat;
+    background-size: 100%; 
+    background-position: center;
+}
+
+#fullScreenBtn.fullscreen {
+    width: 50px;
+    height: 50px;
+    background-image: url('https://static.thenounproject.com/png/3752736-200.png');
+    background-repeat: no-repeat;
+    background-size: 100%; 
+    background-position: center;
+}
+
+

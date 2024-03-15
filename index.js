@@ -1,6 +1,10 @@
 let board = document.getElementById('board')
 let scoreCont = document.getElementById('score')
 let maxScoreCont = document.getElementById('maxScoreCont');
+const pauseBtn = document.getElementById('pauseBtn');
+const muteBtn = document.getElementById('muteBtn');
+const fullScreenBtn = document.getElementById('fullScreenBtn');
+
 let HeadEle;
 // console.log(HeadEle);
 let inputDir = { x: 0, y: 0 };
@@ -38,6 +42,11 @@ function isCollide(snake) {
     }
 }
 function gameEngine() {
+
+    if (isPaused) {
+        return;
+    }
+
     //part1: updating the snake array and food
     if (isCollide(snakeArr)) {
         gameOverSound.play();
@@ -136,11 +145,66 @@ function gameEngine() {
 
 }
 
+// Added Functionalities
+pauseBtn.addEventListener('click', () => {
+    togglePause();
+    pauseBtn.classList.toggle('paused');
+});
 
+muteBtn.addEventListener('click', () => {
+    toggleMute();
+    muteBtn.classList.toggle('muted');
+});
 
+fullScreenBtn.addEventListener('click', () => {
+    toggleFullScreen();
+    fullScreenBtn.classList.toggle('fullscreen');
+});
 
+// Function to toggle pause
+let isPaused = false;
 
+function togglePause() {
+    isPaused = !isPaused;
+    if (isPaused) {
+        isPaused = true;
+    } else {
+        isPaused = false;
+    }
+}
 
+// Function to toggle mute
+let isMuted = false;
+
+function toggleMute() {
+    isMuted = !isMuted;
+    if (isMuted) {
+        // Mute all sounds
+        foodSound.muted = true;
+        gameOverSound.muted = true;
+        moveSound.muted = true;
+        musicSound.muted = true;
+    } else {
+        // Unmute all sounds
+        foodSound.muted = false;
+        gameOverSound.muted = false;
+        moveSound.muted = false;
+        musicSound.muted = false;
+    }
+}
+
+// Function to toggle full screen
+function toggleFullScreen() {
+    if (!document.fullscreenElement) {
+        // Request full screen
+        document.documentElement.requestFullscreen();
+    } else {
+        // Exit full screen
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        }
+    }
+}
 
 
 
