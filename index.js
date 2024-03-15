@@ -7,6 +7,7 @@ const fullScreenBtn = document.getElementById("fullScreenBtn");
 let difficultyMode = "easy";
 document.getElementById("easyBtn").classList.add("selected");
 let obstacles = [];
+let x = 0;
 
 let HeadEle;
 // console.log(HeadEle);
@@ -40,6 +41,14 @@ function isCollide(snake) {
   // return false;
   //if you into yourself
 
+  // Fixing bug: Snake colliding with itself
+  for (let i = 2; i < snake.length; i++) {
+    if (snake[i].x === snake[0].x && snake[i].y === snake[0].y) {
+      x = 1; // To check if game overs because of self-collision
+      return true;
+    }
+  }
+
   // Modified conditions to check collision with obstacles
   if (
     snake[0].x > 18 ||
@@ -67,7 +76,13 @@ function gameEngine() {
     gameOverSound.play();
     musicSound.pause();
     inputDir = { x: 0, y: 0 };
-    alert("Game over. Press any key to play again");
+    if (x === 1) {
+      alert(
+        "Game over. You collided with yourself. Press any key to play again"
+      );
+    } else {
+      alert("Game over. Press any key to play again");
+    }
     snakeArr = [{ x: 13, y: 15 }];
     // musicSound.play();
   }
