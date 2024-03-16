@@ -56,6 +56,17 @@ function isCollide(snake) {
     return true;
   }
 }
+
+// To check if food overlaps with any obstacle
+function isFoodOnObstacles(obstacles, foodPosition) {
+    for (let obstacle of obstacles) {
+      if (obstacle.x === foodPosition.x && obstacle.y === foodPosition.y) {
+        return true;
+      }
+    }
+    return false;
+  }
+
 function gameEngine() {
   if (isPaused) {
     return;
@@ -82,12 +93,14 @@ function gameEngine() {
       y: snakeArr[0].y + inputDir.y,
     });
     // console.log(snakeArr)
-    let a = 2;
-    let b = 16;
-    food = {
-      x: 2 + Math.round(a + (b - a) * Math.random()),
-      y: Math.round(a + (b - a) * Math.random()),
-    };
+    do {
+        let a = 2;
+        let b = 16;
+        food = {
+          x: 2 + Math.round(a + (b - a) * Math.random()),
+          y: Math.round(a + (b - a) * Math.random()),
+        };
+      } while (isFoodOnObstacles(obstacles, food));
   }
 
   //Moving the snake
